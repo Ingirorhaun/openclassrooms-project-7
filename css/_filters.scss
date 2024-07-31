@@ -1,0 +1,102 @@
+@use "variables";
+@use "mixins";
+
+section.filters {
+    display: flex;
+    flex-direction: row;
+    padding: 21px 104px;
+    gap: 66px;
+
+    .filter{
+        @include mixins.manrope-light;
+        
+        position: relative;
+        width: 195px;
+
+        button{
+            @include mixins.manrope-regular;
+
+            width: 100%;
+            height: 56px;
+            border-radius: 11px;
+            padding: 17px 16px;
+            background-color: white;
+            border: 0;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &.active {
+                border-radius: 11px 11px 0 0;
+
+                img {
+                    transform: rotate(180deg);
+                }
+            }
+       }
+       &>div {
+            max-height: 315px;
+            width: 100%;
+            overflow: hidden;
+            display: none;
+            position: absolute;
+            z-index: 2;
+            background-color: white;
+            border-radius: 0 0 11px 11px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+       }
+    }
+
+    h4 {
+        font-size: 21px;
+        line-height: 56px;
+        margin-left: auto;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    
+
+    .filter-search-bar {
+        position: relative;
+
+        input {
+            @include mixins.manrope-light;
+    
+            margin: 0 16px 16px;
+            height: 36px;
+            width: 163px;
+            padding: 0 5px;
+            border: 1px solid #c6c6c6;
+            border-radius: 2px;
+            color:variables.$tertiary;
+            position: relative;
+
+            &::-webkit-search-cancel-button{
+                position:relative;
+                right:25px;
+                color:variables.$tertiary;  
+            }
+        }
+
+        svg {
+            position: absolute;
+            right: 27.5px;
+            top: 11px;
+        }
+
+        
+    }
+}

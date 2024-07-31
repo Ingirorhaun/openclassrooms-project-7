@@ -1,0 +1,86 @@
+@use "variables";
+@use "mixins";
+
+#recipe-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 48px;
+    grid-row-gap: 66px;
+    padding: 55px 104px;
+}
+
+
+.recipe-card{
+    width: 380px;
+    height: 731px;
+    border-radius: 21px;
+    box-shadow: 0px 4px 34px 30px #0000000A;
+
+    .card-header {
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 253px;
+            object-fit: cover;
+            border-radius: 21px 21px 0 0;
+        }
+
+        .tag {
+            @include mixins.manrope-regular;
+
+            // width: 63px;
+            // height: 26px;
+            padding: 5px 15px;
+            border-radius: 14px;
+            position: absolute;
+            top: 21px;
+            right: 22px;
+            background-color: variables.$primary;
+        }
+    }
+    
+    .card-body {
+        padding: 32px 25px;
+        color: variables.$secondary;
+
+        h4 {
+            font-size: 18px;
+        }
+
+        h5 {
+            font-family: 'Manrope';
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 16.39px;
+            letter-spacing: 0.09em;
+            color: variables.$tertiary;
+            text-transform: uppercase;
+        }
+
+        p, ul {
+            @include mixins.manrope-regular;
+
+            font-size: 14px;
+        }
+
+        p {
+            max-height: 76px;
+            overflow: hidden;
+        }
+
+        ul {
+            list-style: none;
+            columns: 2;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            span {
+                color: variables.$tertiary;
+            }
+        }
+    }
+}

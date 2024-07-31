@@ -1,0 +1,9 @@
+@use "mixins";
+
+h1, h4 {
+    @include mixins.anton-regular;
+}
+
+h4 {
+    margin: 0;
+}

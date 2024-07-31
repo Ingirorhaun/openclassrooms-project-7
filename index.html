@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les petits plats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="assets/images/logo.svg" alt="Les petits plats logo" />
+      </div>
+      <h1>
+        Cherchez parmi plus de 1500 recettes<br />
+        du quotidien, simples et délicieuses
+      </h1>
+      <div class="search-bar">
+        <input
+          type="text"
+          placeholder="Rechercher une recette, un ingredient, ..."
+        />
+        <button id="search-btn">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="10" cy="10" r="9.5" stroke="currentColor" />
+            <line
+              x1="18.3536"
+              y1="18.6464"
+              x2="27.3536"
+              y2="27.6464"
+              stroke="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="filters">
+        <h4 id="recipes-counter">0 recettes</h4>
+      </section>
+      <section id="recipe-cards"></section>
+    </main>
+    <footer></footer>
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>

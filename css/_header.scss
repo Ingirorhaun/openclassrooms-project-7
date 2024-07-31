@@ -1,0 +1,62 @@
+@use "variables";
+@use "mixins";
+
+header {
+    max-width: 1440px;
+    height: 667px;
+    background-image: url("../assets/images/header.jpg");
+    background-position-y: -214px;
+    background-size: cover;
+    margin: 0 auto;
+
+    h1 {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 44px;
+        margin-top: 164px;
+        color: variables.$primary;
+    }
+
+    .logo {
+        padding-top: 51px;
+        margin-left: 69px;
+        img {
+            width: 207px;
+        }
+    }
+
+    .search-bar {
+        width: 952px;
+        height: 72px;
+        margin: 0 auto;
+        position: relative;
+        
+        input {
+            @include mixins.manrope-regular;
+            
+            width: calc(100% - 35px)    ;
+            height: 100%;
+            border-radius: 11px;
+            padding-left: 35px;
+            border: 0;
+        }
+        #search-btn {
+            width: 51px;
+            height: 52px;
+            border-radius: 10px;
+            background-color: variables.$secondary;
+            color: white;
+            border: 0;
+            position: absolute;
+            right: 11px;
+            top: 11px;
+            cursor: pointer;
+            transition: 1s ease all;
+
+            &:hover {
+                background-color: variables.$primary;
+                color: black;
+            }
+        }
+    }
+}
