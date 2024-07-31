@@ -104,12 +104,20 @@ section.filters .filter button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 section.filters .filter button.active {
   border-radius: 11px 11px 0 0;
 }
 section.filters .filter button.active img {
   transform: rotate(180deg);
+}
+section.filters .filter button.selected-item-button {
+  height: 53px;
+  border-radius: 11px;
+  padding: 17px 18px;
+  background-color: #FFD15B;
+  margin-top: 21px;
 }
 section.filters .filter > div {
   max-height: 315px;
@@ -122,6 +130,29 @@ section.filters .filter > div {
   border-radius: 0 0 11px 11px;
   overflow-y: scroll;
   scrollbar-width: none;
+}
+section.filters .filter .selected-items-list ul {
+  background-color: #FFD15B;
+  margin-bottom: 10px;
+}
+section.filters .filter .selected-items-list li:hover {
+  font-weight: 700;
+  position: relative;
+}
+section.filters .filter .selected-items-list li:hover::after {
+  content: "";
+  background: url("../assets/images/cross-circle.svg");
+  background-size: cover;
+  height: 17px;
+  width: 17px;
+  position: absolute;
+  right: 0;
+}
+section.filters .filter .selected-items-list li:first-of-type {
+  padding-top: 10px;
+}
+section.filters .filter .selected-items-list li:last-of-type {
+  padding-bottom: 10px;
 }
 section.filters h4 {
   font-size: 21px;
@@ -137,6 +168,7 @@ section.filters ul {
 }
 section.filters li {
   list-style: none;
+  cursor: pointer;
 }
 section.filters .filter-search-bar {
   position: relative;

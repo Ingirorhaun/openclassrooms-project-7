@@ -24,7 +24,7 @@ export const createCard = (recipe) => {
                 ${ingredients.map(i =>
             `
                             <li>
-                                ${i.ingredient} <br/><span>${i.quantity + " " + (i.unit || "")}</span>
+                                ${i.ingredient} <br/><span>${(i.quantity || '') + " " + (i.unit || "")}</span>
                             </li>
                         `
         ).join('')

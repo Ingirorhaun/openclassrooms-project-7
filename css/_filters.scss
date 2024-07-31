@@ -26,6 +26,7 @@ section.filters {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
 
             &.active {
                 border-radius: 11px 11px 0 0;
@@ -33,6 +34,14 @@ section.filters {
                 img {
                     transform: rotate(180deg);
                 }
+            }
+
+            &.selected-item-button {
+                height: 53px;
+                border-radius: 11px;
+                padding: 17px 18px;
+                background-color: variables.$primary;
+                margin-top: 21px;
             }
        }
        &>div {
@@ -47,6 +56,38 @@ section.filters {
             overflow-y: scroll;
             scrollbar-width: none;
        }
+
+       .selected-items-list {
+            ul{
+                background-color: variables.$primary;
+                margin-bottom: 10px;
+            }
+
+            li:hover {
+                font-weight: 700;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    background: url('../assets/images/cross-circle.svg');
+                    background-size: cover;
+                    height: 17px;
+                    width: 17px;
+                    position: absolute;
+                    right: 0;
+                }
+            }
+
+            li:first-of-type {
+                padding-top: 10px;
+            }
+
+            li:last-of-type {
+                padding-bottom: 10px;
+            }
+       }
+
+       
     }
 
     h4 {
@@ -65,6 +106,7 @@ section.filters {
 
     li {
         list-style: none;
+        cursor: pointer;
     }
 
     
