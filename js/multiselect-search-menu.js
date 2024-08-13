@@ -27,19 +27,7 @@ export class MultiSelectSearchMenu {
         });
 
         //list items click
-        this.menuItemsListLis.forEach(li => {
-            li.addEventListener('click', (e) => {
-                const item = e.target.innerText;
-                if (this.selectedItems.includes(item)) {
-                    this.selectedItems = this.selectedItems.filter(i => i != item);
-                } else {
-                    this.selectedItems.push(item);
-                    li.style.display = 'none';
-                }
-                this.refreshSelectedItemsDOM();
-                this.callbackFn();
-            });
-        });
+        this.createMenuItemsEventListers();
 
         //search bar input
         this.searchBar.addEventListener('input', (e) => {
@@ -59,6 +47,8 @@ export class MultiSelectSearchMenu {
             if (!this.menu.contains(e.target.parentElement)) {
                 this.openCloseBtn.classList.remove('active');
                 this.menuContent.style.display = "none";
+                this.searchBar.value = '';
+                this.searchBar.dispatchEvent(new Event('input'));
             }
         });
     }
@@ -137,6 +127,22 @@ export class MultiSelectSearchMenu {
         return menuItemsList;
     };
 
+    createMenuItemsEventListers = () => {
+        this.menuItemsListLis.forEach(li => {
+            li.addEventListener('click', (e) => {
+                const item = e.target.innerText;
+                if (this.selectedItems.includes(item)) {
+                    this.selectedItems = this.selectedItems.filter(i => i != item);
+                } else {
+                    this.selectedItems.push(item);
+                    li.style.display = 'none';
+                }
+                this.refreshSelectedItemsDOM();
+                this.callbackFn();
+            });
+        });
+    };
+
     refreshSelectedItemsDOM = () => {
         this.selectedItemsList.innerHTML = this.createMenuItemsList(this.selectedItems, true).innerHTML;
 
@@ -186,5 +192,12 @@ export class MultiSelectSearchMenu {
     setSelectedItems = (items) => {
         this.selectedItems = items;
         this.refreshSelectedItemsDOM();
+    };
+
+    setMenuItems = (items) => {
+        this.menuItems = items;
+        this.menuItemsListUl.innerHTML = this.createMenuItemsList(items).querySelector('ul').innerHTML;
+        this.menuItemsListLis = this.menuItemsListUl.querySelectorAll('li');
+        this.createMenuItemsEventListers();
     };
 };
