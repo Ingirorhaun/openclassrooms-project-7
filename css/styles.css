@@ -74,6 +74,13 @@ main {
   max-width: 1440px;
   margin: 0 auto;
 }
+main #recipe-cards > p {
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  grid-column: 1/4;
+}
 
 section.filters {
   display: flex;

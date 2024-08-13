@@ -1,7 +1,15 @@
 @use "variables";
+@use "mixins";
 
 main {
     background-color: variables.$background;
     max-width: 1440px;
     margin: 0 auto;
+
+    #recipe-cards {
+        >p {
+            @include mixins.manrope-regular;
+            grid-column: 1/4;
+        }
+    }
 }
