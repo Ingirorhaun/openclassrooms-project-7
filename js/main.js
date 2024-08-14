@@ -80,7 +80,7 @@ const filterRecipesByTag = () => {
     cardsSection.innerHTML = '';
     populateCardsSection(filteredRecipes);
     updateRecipesCounter(filteredRecipes.length);
-    updateUrl(selectedIngredients, selectedAppliances, selectedTools);
+    updateUrl({ ingredients: selectedIngredients.join(','), appliances: selectedAppliances.join(','), tools: selectedTools.join(',') });
 };
 
 export const updateRecipesCounter = (count) => {
@@ -89,23 +89,20 @@ export const updateRecipesCounter = (count) => {
 };
 
 //update page url with selected filters
-const updateUrl = (selectedIngredients, selectedAppliances, selectedTools) => {
+export const updateUrl = (params) => {
     const urlParams = new URLSearchParams(window.location.search);
-    if (selectedIngredients.length) {
-        urlParams.set('ingredients', selectedIngredients.join(','));
-    } else {
-        urlParams.delete('ingredients');
+
+    for (const key in params) {
+        if (Object.prototype.hasOwnProperty.call(params, key)) {
+            const value = params[key];
+            if (value.length) {
+                urlParams.set(key, value);
+            } else {
+                urlParams.delete(key);
+            }
+        }
     }
-    if (selectedAppliances.length) {
-        urlParams.set('appliances', selectedAppliances.join(','));
-    } else {
-        urlParams.delete('appliances');
-    }
-    if (selectedTools.length) {
-        urlParams.set('tools', selectedTools.join(','));
-    } else {
-        urlParams.delete('tools');
-    }
+
     window.history.pushState({}, '', '?' + urlParams.toString());
 };
 
