@@ -41,20 +41,13 @@ export const initTextSearch = () => {
     });
 };
 
-//search through the recipe title, ingredients and description when the user enters at least 3 characters in the search field, without using array methods
+//search through the recipe title, ingredients and description when the user enters at least 3 characters in the search field
 const textSearch = (recipe, searchValue) => {
     if (searchValue.length < 3) return true;
-    if (
-        recipe.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-        recipe.description.toLowerCase().includes(searchValue.toLowerCase())
-    ) {
-        return true;
-    } else {
-        for (const ingredient of recipe.ingredients) {
-            if (ingredient.ingredient.toLowerCase().includes(searchValue.toLowerCase())) {
-                return true;
-            }
-        }
-    }
-    return false;
+    return (
+        recipe.name.toLowerCase().includes(searchValue) ||
+        recipe.description.toLowerCase().includes(searchValue) ||
+        recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchValue))
+
+    );
 };
