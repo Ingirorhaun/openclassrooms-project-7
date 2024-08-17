@@ -44,8 +44,21 @@ header .search-bar input {
   width: calc(100% - 35px);
   height: 100%;
   border-radius: 11px;
-  padding-left: 35px;
+  padding: 0 0 0 35px;
   border: 0;
+}
+header .search-bar input + svg {
+  position: absolute;
+  right: 70px;
+  top: 25px;
+  cursor: pointer;
+  visibility: visible;
+}
+header .search-bar input:-moz-placeholder-shown + svg {
+  visibility: hidden;
+}
+header .search-bar input:placeholder-shown + svg {
+  visibility: hidden;
 }
 header .search-bar #search-btn {
   width: 51px;
