@@ -1,17 +1,16 @@
 import { recipes } from '../data/recipes.js';
 import { MultiSelectSearchMenu } from './multiselect-search-menu.js';
 import { createCard } from "./recipe-card.js";
-import { initSearch } from './search.js';
+import { initTextSearch, filterRecipes } from './search.js';
 
-let searchFilteredRecipes = recipes;
-const menus = {};
+export const menus = {};
 
 const init = () => {
     const { ingredientsList, appliancesList, toolsList } = createFiltersLists(recipes);
     //create filter menus
-    menus.ingredientsFilterMenu = new MultiSelectSearchMenu('Ingrédients', ingredientsList, filterRecipesByTag);
-    menus.appliancesFilterMenu = new MultiSelectSearchMenu('Appareils', appliancesList, filterRecipesByTag);
-    menus.toolsFilterMenu = new MultiSelectSearchMenu('Ustensiles', toolsList, filterRecipesByTag);
+    menus.ingredientsFilterMenu = new MultiSelectSearchMenu('Ingrédients', ingredientsList, filterRecipes);
+    menus.appliancesFilterMenu = new MultiSelectSearchMenu('Appareils', appliancesList, filterRecipes);
+    menus.toolsFilterMenu = new MultiSelectSearchMenu('Ustensiles', toolsList, filterRecipes);
     //insert menu elements in the dom
     const filtersSection = document.querySelector('section.filters');
     filtersSection.prepend(menus.toolsFilterMenu.menu);
@@ -20,7 +19,7 @@ const init = () => {
 
     //create cards. If url params are present, filter recipes accordingly
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('ingredients') || urlParams.has('appliances') || urlParams.has('tools')) {
+    if (urlParams.has('ingredients') || urlParams.has('appliances') || urlParams.has('tools') || urlParams.has('searchQuery')) {
 
         const selectedIngredients = urlParams.get('ingredients')?.split(', ') || [];
         menus.ingredientsFilterMenu.setSelectedItems(selectedIngredients);
@@ -31,12 +30,15 @@ const init = () => {
         const selectedTools = urlParams.get('tools')?.split(', ') || [];
         menus.toolsFilterMenu.setSelectedItems(selectedTools);
 
-        filterRecipesByTag();
+        const searchQuery = urlParams.get('searchQuery') || '';
+        document.querySelector('.search-bar input').value = searchQuery;
+
+        filterRecipes();
     } else {
         populateCardsSection(recipes);
         updateRecipesCounter(recipes.length);
     }
-    initSearch(recipes);
+    initTextSearch();
 };
 
 export const populateCardsSection = (recipes) => {
@@ -58,29 +60,6 @@ export const populateCardsSection = (recipes) => {
         fragment.appendChild(createCard(recipe));
     }
     cardsSection.appendChild(fragment);
-};
-
-const filterRecipesByTag = () => {
-    //get list of selected items from each menu
-    const selectedIngredients = menus.ingredientsFilterMenu.getSelectedItems();
-    const selectedAppliances = menus.appliancesFilterMenu.getSelectedItems();
-    const selectedTools = menus.toolsFilterMenu.getSelectedItems();
-
-    //update cards section showing only recipes that match the filters
-    const filteredRecipes = searchFilteredRecipes.filter(recipe => {
-        const ingredients = recipe.ingredients.map(i => i.ingredient);
-        return (
-            selectedIngredients.every(i => ingredients.includes(i)) &&
-            selectedAppliances.every(a => recipe.appliance == a) &&
-            selectedTools.every(t => recipe.ustensils.includes(t))
-        );
-    });
-
-    const cardsSection = document.getElementById('recipe-cards');
-    cardsSection.innerHTML = '';
-    populateCardsSection(filteredRecipes);
-    updateRecipesCounter(filteredRecipes.length);
-    updateUrl({ ingredients: selectedIngredients.join(','), appliances: selectedAppliances.join(','), tools: selectedTools.join(',') });
 };
 
 export const updateRecipesCounter = (count) => {
@@ -120,10 +99,6 @@ export const updateFilterMenus = (recipes) => {
     menus.ingredientsFilterMenu.setMenuItems(ingredientsList);
     menus.appliancesFilterMenu.setMenuItems(appliancesList);
     menus.toolsFilterMenu.setMenuItems(toolsList);
-};
-
-export const setSearchFilteredRecipes = (recipes) => {
-    searchFilteredRecipes = recipes;
 };
 
 init();
