@@ -57,6 +57,10 @@ section.filters {
             scrollbar-width: none;
        }
 
+       .items-list {
+        padding-bottom: 16px;
+       }
+
        .selected-items-list {
             ul{
                 background-color: variables.$primary;

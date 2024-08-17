@@ -138,6 +138,9 @@ section.filters .filter > div {
   overflow-y: scroll;
   scrollbar-width: none;
 }
+section.filters .filter .items-list {
+  padding-bottom: 16px;
+}
 section.filters .filter .selected-items-list ul {
   background-color: #FFD15B;
   margin-bottom: 10px;
