@@ -91,6 +91,12 @@ section.filters {
             }
        }
 
+    @media (max-width: variables.$layout-breakpoint-s) {
+        width: 25%;
+    }
+    @media (max-width: variables.$layout-breakpoint-xs) {
+        width: auto;
+    }
        
     }
 
@@ -135,6 +141,10 @@ section.filters {
                 right:25px;
                 color:variables.$tertiary;  
             }
+
+            @media (max-width: variables.$layout-breakpoint-s) {
+                width: calc(100% - 32px);
+            }
         }
 
         svg {
@@ -144,5 +154,18 @@ section.filters {
         }
 
         
+    }
+
+    @media (max-width: variables.$layout-breakpoint-m) {
+        padding: 21px 52px;
+    }
+
+    @media (max-width: variables.$layout-breakpoint-s) {
+        gap: 20px;
+        padding: 21px 26px;
+    }
+
+    @media (max-width: variables.$layout-breakpoint-xs) {
+        flex-direction: column;
     }
 }

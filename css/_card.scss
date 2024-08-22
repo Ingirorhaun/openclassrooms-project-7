@@ -8,6 +8,19 @@
     grid-column-gap: 48px;
     grid-row-gap: 66px;
     padding: 55px 104px;
+    justify-items: center;
+
+    @media (max-width: variables.$layout-breakpoint-m) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: variables.$layout-breakpoint-s) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media (max-width: variables.$layout-breakpoint-xs) {
+        padding: 55px 10px;
+    }
 }
 
 
