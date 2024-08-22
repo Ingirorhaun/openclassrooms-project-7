@@ -39,16 +39,7 @@ header {
             border-radius: 11px;
             padding: 0 0 0 35px;
             border: 0;
-            // box-sizing: content-box;
-
-            // &::-webkit-search-cancel-button{
-            //     position:relative;
-            //     right:70px;
-
-            //     height: 20px;
-            //     width: 20px;
-            // }
-
+           
             & + svg {
                 position: absolute;
                 right: 70px;
@@ -76,6 +67,29 @@ header {
             &:hover {
                 background-color: variables.$primary;
                 color: black;
+            }
+        }
+    }
+
+    @media (max-width: variables.$layout-breakpoint-m) {
+        .search-bar {
+            width: 70%;
+        }
+    }
+
+    @media (max-width: variables.$layout-breakpoint-xs) {
+        .search-bar {
+            width: 70%;
+        }
+        h1 {
+            padding: 0 10px;
+            font-size: 28px;
+        }
+        .logo {
+            img {
+                margin: auto;
+                width: 80%;
+                max-height: 40px;
             }
         }
     }
